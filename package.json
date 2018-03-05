@@ -4,6 +4,7 @@
   "description": "Web server for hosting WebGL game MallGame",
   "main": "index.js",
   "scripts": {
+    "start": "deploy.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vince Dang <xuanvu001@e.ntu.edu.sg>",
