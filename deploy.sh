@@ -1,14 +1,14 @@
 #!/bin/sh
 
-echo "Copying assets from Unity project to dev server..."
+echo "\nCopying assets from Unity project to dev server...\n"
 cp -r ~/Documents/unity.nosync/disk/MallGame_WebGL/* static/
-echo "Assets copied."
+echo "\nAssets copied.\n"
 cp static/index.html.bak static/index.html
 git st
 git aa
 git cm "Deployment tag: $@"
-echo "Pushing assets to production server..."
+echo "\nPushing assets to production server...\n"
 git po
-echo "Assets pushed,"
+echo "\nAssets pushed.\n"
 echo $(gcloud compute ssh instance-2 -- 'cd MallGameServer && git pull && pm2 ls')
-echo "Deployment finished."
+echo "\nDeployment finished.\n"
