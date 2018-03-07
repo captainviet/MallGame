@@ -6,9 +6,18 @@ echo "\nAssets copied.\n"
 cp static/index.html.bak static/index.html
 git st
 git aa
-git cm "Deployment tag: $@"
-echo "\nPushing assets to production server...\n"
+git cm "Deployment tag: $2"
+echo "\nPushing assets to [$1] server...\n"
 git po
 echo "\nAssets pushed.\n"
-echo $(gcloud compute ssh instance-2 -- 'cd MallGameServer && git pull && pm2 ls')
+echo $(gcloud compute ssh instance-2 -- 'cd MallGameServer && git pull')
+case "$2" in
+  prod)
+    echo $(gcloud compute ssh instance-2 -- 'sudo service nginx restart')
+    ;;
+  dev)
+    ;;
+  *)
+    ;;
+esac
 echo "\nDeployment finished.\n"
