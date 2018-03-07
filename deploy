@@ -3,7 +3,8 @@
 echo "\nCopying assets from Unity project to dev server...\n"
 cp -r ~/Documents/unity.nosync/disk/MallGame_WebGL/* static/
 echo "\nAssets copied.\n"
-cp static/index.html.bak static/index.html
+cp static/custom/index.html static/
+cp static/custom/favicon.ico static/TemplateData/
 git st
 git aa
 git cm "Deployment tag: $2"
