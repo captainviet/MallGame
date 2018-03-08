@@ -21,6 +21,7 @@ async function serveStatic(ctx, next) {
 }
 
 const router = new Router()
-router.all('*', cache, serveStatic)
+//router.all('*', cache, serveStatic)
+router.all('*', serveStatic)
 
 module.exports = router
