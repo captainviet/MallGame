@@ -3,15 +3,18 @@
 echo "\nCopying assets from Unity project to dev server...\n"
 cp -r ~/Documents/unity.nosync/disk/MallGame_WebGL/* static/
 echo "\nAssets copied.\n"
+
 cp static/custom/index.html static/
-cp static/custom/favicon.ico static/TemplateData/
-cp static/custom/style.css static/TemplateData/
+cp static/custom/TemplateData/* static/TemplateData/
+
 git st
 git aa
 git cm "Deployment tag: $2"
+
 echo "\nPushing assets to [$1] server...\n"
 git po
 echo "\nAssets pushed.\n"
+
 echo $(gcloud compute ssh instance-2 -- 'cd MallGameServer && git pull')
 echo "\nConfiguring [$1] environment...\n"
 case "$1" in
@@ -23,4 +26,5 @@ case "$1" in
   *)
     ;;
 esac
+
 echo "\nDeployment finished.\n"
